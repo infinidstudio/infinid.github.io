@@ -1,3 +1,24 @@
+www to non-www Example: www.infinid.in to https://infinid.in
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^www.infinid.in/ 
+RewriteRule (.*) https://infinid.in/$1 [R=301,L]
+
+non-www to www Example: infinid.in/ to https://www.infinid.in/
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^yoursite.com 
+RewriteRule (.*) https://www.yoursite.com/$1 [R=301,L]
+
+http to https redirect http://www.infinid.in/ to https://www.infinid.in/
+
+<IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteCond %{HTTPS} !on
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+</IfModule>
+
+Main Domain: https://infinid.in/
+http://www.infinid.in/
+https://www.infinid.in/
+http://infinid.in/
